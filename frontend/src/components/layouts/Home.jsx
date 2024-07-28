@@ -1,9 +1,15 @@
 //rfc
-import React from 'react'
+import React, { useEffect } from 'react'
 import CountRestaurant from './CountRestaurant'
 import Restaurant from './Restaurant'
+import { getRestaurant } from '../../actions/restaurantAction'
+import { useDispatch } from 'react-redux'
 
 export default function Home() {
+const dispatch= useDispatch();
+useEffect(()=>{
+    dispatch(getRestaurant())
+},[dispatch]);
   return (
     <>
       <CountRestaurant/>
