@@ -16,7 +16,7 @@ export const restaurantReducer=(state=initialState,action)=>{
             return {...state,
                 loading:false,//data has been updated
                 count:action.payload.count, //payload has data
-                restaurants: action.payload,
+                restaurants: action.payload.restaurants,
             };
         default:
             return state;

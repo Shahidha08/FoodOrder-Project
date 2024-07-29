@@ -1,20 +1,28 @@
 import React from 'react'
 
-export default function Restaurant() {
+export default function Restaurant({restaurant}) {
   return (
     <div className="col-sm-12 col-md-6 col-lg-3 my-3">
         <div className="card p-3 rounded">
-            <img src='https://b.zmtcdn.com/data/pictures/chains/1/3000091/1adb116d088669540c89150836d668f9.jpg?output-format=webp&fit=around|300:273&crop=300:273;*,*' alt="Domino's"/>
+            <img src={restaurant.images[0].url} 
+            alt={restaurant.name} 
+            className="card-img-top mx-auto"/>
 
             <div className="card-body d-flex flex-column">
-            <h5 className="card-title">Dominos Pizza</h5>
+            <h5 className="card-title">{restaurant.name}</h5>
             <p className="rest_address">
-                123,street,place,city,6200000,State
+                {restaurant.address}
             </p>
-            <div className="rating-outer">
-                <div className="rating-inner"></div>
+            <div className="ratings mt-auto">
+                <div className="rating-outer">
+                    <div className="rating-inner" 
+                    style={{width:`${(restaurant.ratings/5)*100}%`}}>
+
+                    </div>
+            </div>
+            
                     <span id="no_of_reviews">
-                        (140 reviews)
+                        {restaurant.numOfReviews} reviews
                     </span>
                 
             </div>

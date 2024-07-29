@@ -3,7 +3,6 @@ import "./App.css";
 import Header from "./components/layouts/Header"
 import Home from "./components/layouts/Home";
 import Footer from "./components/layouts/Footer";
-//import FoodItem from "./components/layouts/FoodItem";
 import Menu from "./components/layouts/Menu";
 import Cart from "./components/cart/Cart"
 
@@ -13,8 +12,8 @@ export default function App() {
     <Header/>
     <div className="container container-fluid">
       <Home/>
-      <Menu/>
-      <Cart/>
+      {/*<Menu/>
+      <Cart/>*/}
 
     </div>
     <Footer />

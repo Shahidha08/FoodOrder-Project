@@ -1,7 +1,7 @@
 import axios from "axios"
 import { ALL_RESTAURANTS_REQUEST,ALL_RESTAURANTS_SUCCESS } from "../constants/restaurantConstant"
 
-export const getRestaurant = ()=>{
+export const getRestaurants = ()=>{
     //aysnc,axios,await coz taking the data from outside source
     return async(dispatch)=>
     {
