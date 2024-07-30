@@ -2,7 +2,7 @@ export default function Footer() {
   return (
     <>
     <footer className="text-center">
-        Food Delvery Website-2024-25.All Rights Reserved by WSA
+        Food Delivery Website-2024-2025.All Rights Reserved by WSA
     </footer>
     </>
   )
