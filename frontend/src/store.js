@@ -6,9 +6,12 @@ import {
     } from "redux";
 import thunk from "redux-thunk";//helps to run data fetching(does some delayed work)
 import { restaurantReducer } from "./reducer/restaurantReducer";
+import { menuReducer } from "./reducer/menuReducer";
+
 
 const reducer=combineReducers({
     restaurants:restaurantReducer,
+    menus:menuReducer,
 
 })
 //redux and react app,allow multiple store enhancer in a row, adding redux dev tools
