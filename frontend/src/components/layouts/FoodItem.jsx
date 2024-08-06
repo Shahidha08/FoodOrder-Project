@@ -1,10 +1,10 @@
 import React from 'react';
 import { LiaRupeeSignSolid } from 'react-icons/lia';
+import {useAlert} from "react-alert"
 
-export default function FoodItem({ fooditem }) {
-  // Ensure fooditem is properly destructured
-  if (!fooditem) return null;
+export default function FoodItem({ fooditem, restaurant }) {
 
+    const alert = useAlert();
   return (
     <div className='col-sm-12 col-md-6 col-lg-3 my-3'>
       <div className='card p-3 rounded'>
@@ -24,7 +24,7 @@ export default function FoodItem({ fooditem }) {
             Add to Cart
           </button>
           <p>
-            Status:{' '}
+            Status:{" "}
             <span
               id="stock_status"
               className={fooditem.stock > 0 ? "greenColor" : "redColor"}
