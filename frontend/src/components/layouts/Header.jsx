@@ -51,19 +51,13 @@ export default function Header() {
               >
                 <figure className="avatar avatar-nav">
                   <img
-                    src="/images/images.png"
+                    src={user.avatar.url}
                     alt="avatar"
                     className="rounded-circle"
                   />
                 </figure>
 
-                <figure className="avatar avatar-nav">
-                  <img
-                    src="/images/images.png"
-                    alt="avatar"
-                    className="rounded-circle"
-                  />
-                </figure>
+
                 <span>{user && user.name}</span>
               </Link>
               <div
