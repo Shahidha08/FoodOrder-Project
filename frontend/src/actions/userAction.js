@@ -181,7 +181,7 @@ export const forgotPassword = (email)=>async(dispatch)=>{
 }
 }
 
-export const reetPassword=(token,passwords)=> async(dispatch)=>{
+export const resetPassword=(token,passwords)=> async(dispatch)=>{
     try{
         dispatch({
             type:NEW_PASSWORD_REQUEST

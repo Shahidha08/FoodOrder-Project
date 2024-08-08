@@ -35,7 +35,7 @@ export default function App() {
                     <Route path="/users/me" element={<Profile/>}/>
                     <Route path="/users/me/update" element={<UpdateProfile/>}/>
                     <Route path="users/forgotPassword" element={<ForgotPassword/>}/>
-                    <Route path="users/resetPassword/:token" elemnt={<NewPassword/>}/>
+                    <Route path="users/resetPassword/:{token}" elemnt={<NewPassword/>}/>
                </Routes>
             </div>
             <Footer />
