@@ -33,9 +33,8 @@ export default function Header() {
           Cart
         </span>
         <span
-          style={{ backgroundColor: "white" }}
           className="ml-1"
-          id="cart-count"
+          id="cart_count"
         >
           {cartItems.length}
         </span>
@@ -47,7 +46,7 @@ export default function Header() {
             <div className="ml-4 dropdown d-inline">
               <Link
                 to="/"
-                className="btn dropdown-tooggle text-white mr-4"
+                className="btn dropdown-toggle text-white mr-4"
                 type="button"
                 id="dropDownMenuButton"
                 data-toggle="dropdown"
