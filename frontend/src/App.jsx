@@ -34,8 +34,8 @@ export default function App() {
                     <Route path="/users/signup" element={<Register/>}/>
                     <Route path="/users/me" element={<Profile/>}/>
                     <Route path="/users/me/update" element={<UpdateProfile/>}/>
-                    <Route path="users/forgotPassword" element={<ForgotPassword/>}/>
-                    <Route path="users/resetPassword/:{token}" elemnt={<NewPassword/>}/>
+                    <Route path="/users/forgotPassword" element={<ForgotPassword/>}/>
+                    <Route path="/users/resetPassword/:token" element={<NewPassword/>}/>
                </Routes>
             </div>
             <Footer />
