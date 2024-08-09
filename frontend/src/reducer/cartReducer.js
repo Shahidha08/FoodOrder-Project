@@ -1,4 +1,4 @@
-import { ADD_TO_CART, CLEAR_CART, FETCH_CART_ITEM, REMOVE_ITEM_CART, UPDATE_CART_ITEM } from "../constants/cartConstant";
+import { ADD_TO_CART, CLEAR_CART, FETCH_CART, REMOVE_ITEM_CART, UPDATE_CART_ITEM } from "../constants/cartConstant";
 
 export const cartReducer = (
     state = { cartItems: [], restaurant: {} },
@@ -18,7 +18,7 @@ export const cartReducer = (
                 cartItems: action.payload.items,
             };
         
-        case FETCH_CART_ITEM:
+        case FETCH_CART:
             return {
                 ...state,
                 restaurant:action.payload.restaurant,

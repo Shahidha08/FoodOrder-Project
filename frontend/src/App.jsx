@@ -9,11 +9,14 @@ import Register from "./components/users/Register"
 import UpdateProfile from "./components/users/UpdateProfile"
 import ForgotPassword from "./components/users/ForgotPassword"
 import NewPassword from "./components/users/NewPassword"
+import Cart from "./components/cart/Cart"
 import store from "./store"
 import { useEffect } from "react";
 import Profile from "./components/users/Profile"
 import {BrowserRouter,Route,Routes} from "react-router-dom"
 import { loadUser } from "./actions/userAction";
+import { fetchCartItems } from "./actions/cartAction";
+import { useDispatch,useSelector } from "react-redux";
 
 export default function App() {
    //dispatched exactly once when the component is first rendered ,
@@ -22,6 +25,13 @@ export default function App() {
    useEffect(()=>{
     store.dispatch(loadUser())
    },[]);
+
+   const dispatch=useDispatch();
+
+   const {user}=useSelector((state)=>state.auth)
+   if(user){
+    dispatch(fetchCartItems())
+   }
   return (
     <BrowserRouter>
         <div className="App">
@@ -36,6 +46,7 @@ export default function App() {
                     <Route path="/users/me/update" element={<UpdateProfile/>}/>
                     <Route path="/users/forgotPassword" element={<ForgotPassword/>}/>
                     <Route path="/users/resetPassword/:token" element={<NewPassword/>}/>
+                    <Route path="/cart" element={<Cart/>}/>
                </Routes>
             </div>
             <Footer />

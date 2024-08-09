@@ -1,20 +1,17 @@
 import axios from "axios"
-import { ADD_TO_CART,FETCH_CART_ITEM,UPDATE_CART_ITEM,REMOVE_ITEM_CART } from "../constants/cartConstant"
-
-
-
+import { ADD_TO_CART,FETCH_CART,UPDATE_CART_ITEM,REMOVE_ITEM_CART } from "../constants/cartConstant"
 
 export const fetchCartItems=(alert)=>async(dispatch)=>{
     try{
         const response=await axios.get(`/api/v1/eats/cart/get-cart`)
         dispatch({
-            type:FETCH_CART_ITEM,
+            type:FETCH_CART,
             payload:response.data.data
         })
     }catch(error){
         console.error("Fetch cart error: ",error)
         if(alert){
-            alert.info("Cart is hungry")
+            alert.info("Cart is empty")
         }
     }
 }

@@ -119,6 +119,7 @@ export const logout=() =>async(dispatch)=>{
         dispatch({
             type:LOGOUT_SUCCESS,
         })
+        dispatch()
     }catch(error){
         dispatch({
             type:LOGOUT_FAIL,
