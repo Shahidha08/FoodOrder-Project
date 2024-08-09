@@ -1,5 +1,5 @@
 import axios from "axios"
-import { ADD_TO_CART,FETCH_CART,UPDATE_CART_ITEM,REMOVE_ITEM_CART } from "../constants/cartConstant"
+import { ADD_TO_CART,FETCH_CART_ITEM,UPDATE_CART_ITEM,REMOVE_ITEM_CART } from "../constants/cartConstant"
 
 
 
@@ -8,7 +8,7 @@ export const fetchCartItems=(alert)=>async(dispatch)=>{
     try{
         const response=await axios.get(`/api/v1/eats/cart/get-cart`)
         dispatch({
-            type:FETCH_CART,
+            type:FETCH_CART_ITEM,
             payload:response.data.data
         })
     }catch(error){
@@ -21,8 +21,7 @@ export const fetchCartItems=(alert)=>async(dispatch)=>{
 
 //add to cart
 
-export const addItemToCart=
-(foodItemId,restaurant,quantity,alert)=> async (dispatch,getState) => {
+export const addItemToCart=(foodItemId,restaurant,quantity,alert)=> async (dispatch,getState) => {
     try{
         const {user} = getState().auth; //return the current store tree
         const response = await axios.post(`/api/v1/eats/cart/add-to-cart`,{
@@ -73,7 +72,8 @@ export const  removeItemFromCart = (foodItemId)=> async(dispatch,getState)=>{
         if(typeof foodItemId==="object"){
             foodItemId=foodItemId._id;
         }
-        const response = await axios.delete(`/api/v1/eats/cart/delete-cart-item`,{
+        const response = await axios.delete(`/api/v1/eats/cart/delete-cart-item`,
+        {
         data:{userId:user._id,foodItemId},
         }
     )
@@ -82,7 +82,7 @@ export const  removeItemFromCart = (foodItemId)=> async(dispatch,getState)=>{
             payload:response.data,
         })
 
-    }catch{
+    }catch(error){
         alert.error(error.response ? error.response.data.message : error.message);
     }
 }

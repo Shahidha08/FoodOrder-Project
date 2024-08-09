@@ -1,10 +1,72 @@
-import React from 'react';
+import React, { useState,useEffect } from 'react';
 import { LiaRupeeSignSolid } from 'react-icons/lia';
 import {useAlert} from "react-alert"
-
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import {addItemToCart, removeItemFromCart, updateCartQuantity} from "../../actions/cartAction"
+ 
+//How to handle the data when it is coming
 export default function FoodItem({ fooditem, restaurant }) {
+    const [quantity,setQuantity]=useState(1) //state Management
+    const [showButtons,setShowButtons]=useState(false);
 
+    //destructuring
+    const {isAuthenticated,user}=useSelector((state)=>state.auth)
+   // const authentication=useSelector((state)=>state.auth.isAuthenticated);
+   // const user=useSelector((state)=>state.auth);
+
+
+    const navigate=useNavigate();
+    const dispatch=useDispatch();
     const alert = useAlert();
+
+    const cartItems =useSelector((state)=>state.cart.cartItems)
+
+    useEffect(()=>{
+      const cartItem= cartItems.find((item)=>item.foodItem._id===fooditem._id)  //item.foodItem._id-coming from MongoDB , fooditem._id- from the Menu
+      if (cartItem){
+        setQuantity(cartItem.quantity);
+        setShowButtons(true); 
+      }else{
+        setQuantity(1);
+        setShowButtons(false)
+      }
+    },[cartItems,fooditem])
+
+const increaseQty= ()=>{
+  if(quantity < fooditem.stock){
+    const newQuantity = quantity+1
+    setQuantity(newQuantity)
+    dispatch(updateCartQuantity(fooditem._id,newQuantity,alert))
+  }else{
+    alert.error("Sorry, we are out of stock");
+  }
+}
+
+const decreaseQty= ()=>{
+  if(quantity > 1){
+    const newQuantity = quantity-1
+    setQuantity(newQuantity)
+    dispatch(updateCartQuantity(fooditem._id,newQuantity,alert))
+  }else{
+    setQuantity(0);
+    setShowButtons(false)
+    dispatch(removeItemFromCart(fooditem._id))
+  }
+}
+
+const addToCartHandler=()=>{
+  if(!isAuthenticated && !user){
+    return navigate("/users/login")
+  }
+  if(fooditem && fooditem._id){
+    dispatch(addItemToCart(fooditem._id,restaurant,quantity,alert))
+    setShowButtons(true)
+  }else{
+    alert.error("Failed to add item to cart")
+  }
+}
+
   return (
     <div className='col-sm-12 col-md-6 col-lg-3 my-3'>
       <div className='card p-3 rounded'>
@@ -20,9 +82,39 @@ export default function FoodItem({ fooditem, restaurant }) {
             <LiaRupeeSignSolid />{fooditem.price}
             <br />
           </p>
-          <button type='button' className="btn-primary d-inline ml-4">
-            Add to Cart
-          </button>
+
+          {
+            !showButtons ? (
+              <button type="button" id="cart_btn" 
+              className="btn btn-primart d-inline ml-4"
+              disabled={fooditem.stock===0}
+              onClick={addToCartHandler}
+              >
+                Add to Cart
+              </button>
+            ):(
+              <div className="stockCounter d-inline">
+                <span className="btn btn-danger minus" 
+                  onClick={decreaseQty}>
+                  -
+                </span>
+
+                  <input
+                  type="number"
+                  className="form-control count d-inline"
+                  value={quantity}
+                  readOnly
+                  />
+
+                <span 
+                className="btn btn-primary plus" 
+                onClick={increaseQty}>
+                  +
+                </span>
+              </div>
+            )
+
+          }
           <p>
             Status:{" "}
             <span

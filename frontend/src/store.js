@@ -8,13 +8,15 @@ import thunk from "redux-thunk"; //helps to run data fetching(does some delayed 
 import { restaurantReducer } from "./reducer/restaurantReducer";
 import { menuReducer } from "./reducer/menuReducer";
 import { authReducer, forgotPasswordReducer, userReducer } from "./reducer/userReducer";
+import { cartReducer } from "./reducer/cartReducer";
 
 const reducer = combineReducers({
   restaurants: restaurantReducer,
   menus: menuReducer,
   auth: authReducer,
   user:userReducer,
-  forgotPassword:forgotPasswordReducer
+  forgotPassword:forgotPasswordReducer,
+  cart:cartReducer
 });
 //redux and react app,allow multiple store enhancer in a row, adding redux dev tools
 const composeenhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
