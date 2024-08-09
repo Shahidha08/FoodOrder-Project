@@ -119,7 +119,7 @@ export const logout=() =>async(dispatch)=>{
         dispatch({
             type:LOGOUT_SUCCESS,
         })
-        dispatch()
+        dispatch({type:LOGOUT_SUCCESS,payload:data.success})
     }catch(error){
         dispatch({
             type:LOGOUT_FAIL,
