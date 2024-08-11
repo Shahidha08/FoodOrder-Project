@@ -1,4 +1,5 @@
 //LOGIN
+import { CLEAR_CART } from "../constants/cartConstant"
 import { LOAD_USER_REQUEST,
      LOGIN_REQUEST,
      REGISTER_USER_FAIL,
@@ -119,7 +120,7 @@ export const logout=() =>async(dispatch)=>{
         dispatch({
             type:LOGOUT_SUCCESS,
         })
-        dispatch({type:LOGOUT_SUCCESS,payload:data.success})
+        dispatch({type:CLEAR_CART}) //clear cart when logout
     }catch(error){
         dispatch({
             type:LOGOUT_FAIL,
