@@ -3,7 +3,7 @@ import {useDispatch,useSelector} from "react-redux";
 import { LiaRupeeSignSolid } from "react-icons/lia";
 import {useAlert} from "react-alert";
 import { fetchCartItems,removeItemFromCart,updateCartQuantity } from "../../actions/cartAction";
-
+import {payment} from "../../actions/orderAction"
 // let fakeCartItems = [
 //   {
 //     foodItem: {
@@ -69,7 +69,11 @@ const decreaseQty=(id,quantity)=>{
   }else{
     alert.error("Minimum Quantity reached")
   }
-}  
+}
+
+const checkoutHandler=()=>{
+  dispatch(payment(cartItems,restaurant))
+}
 return (
     <>
       {cartItems.length === 0 ? (
@@ -168,7 +172,7 @@ return (
                   </span>
                 </p>
                 <hr />
-                <button id="checkout_btn" className="btn btn-primary btn-block">
+                <button id="checkout_btn" className="btn btn-primary btn-block" onClick={checkoutHandler}>
                   Check Out
                 </button>
               </div>

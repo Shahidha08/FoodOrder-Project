@@ -11,7 +11,7 @@ export const fetchCartItems=(alert)=>async(dispatch)=>{
     }catch(error){
         console.error("Fetch cart error: ",error)
         if(alert){
-            alert.info("Cart is empty")
+            alert.info("Cart is hungry")
         }
     }
 }
