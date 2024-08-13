@@ -26,15 +26,10 @@ const OrderDetails = () => {
   const deliveryDetails = deliveryInfo && `${deliveryInfo.address}, ${deliveryInfo.city}, ${deliveryInfo.postalCode}, ${deliveryInfo.country}`;
 
   const isPaid = paymentInfo && paymentInfo.status === "paid" ? true : false;
-
-
-
-
-
-
+  
   return (
     <>
-      {5 > 10 ? (
+      {loading ? (
         <Loader />
       ) : (
         <>
