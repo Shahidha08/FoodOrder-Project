@@ -21,7 +21,7 @@ export const createOrder= (session_id) =>async(dispatch)=>{
         const config={
             headers:{"Content-Type": "application/json"},
         }
-        const {data}= await axios.post("/api/v1/eats/orsers/new", {session_id},config)
+        const {data}= await axios.post("/api/v1/eats/orders/new", {session_id},config)
 
         dispatch({
             type:CREATE_ORDER_SUCCESS,
@@ -57,7 +57,7 @@ export const payment=(items,restaurant)=> async (dispatch)=>{
     }
 }
 
-export const myOrder=()=>async(dispatch)=>{
+export const myOrders=()=>async(dispatch)=>{
     try{
         dispatch({
             type:MY_ORDER_REQUEST
@@ -79,7 +79,7 @@ export const myOrder=()=>async(dispatch)=>{
     }
 }
 
-export const getOrderDetail=(id)=>async (dispatch)=>{
+export const getOrderDetails=(id)=>async (dispatch)=>{
     try{
         dispatch({
             type:ORDER_DETAILS_REQUEST

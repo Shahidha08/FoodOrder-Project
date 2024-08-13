@@ -1,10 +1,33 @@
-import React from "react";
+import React,{useEffect} from "react";
+import {Link,useLocation} from "react-router-dom"
+import {useDispatch} from "react-redux"
+import {createOrder} from "../../actions/orderAction"
 
 const OrderSuccess = () => {
+  const location=useLocation(); 
+  
+  //link-> create an object with pathname 
+  //https://example.com/page?name:Jhon&age=25
+  //{pathname: https://example.com,
+  //name:"JhonDoe",
+  //age:25}
+
+  const searchParams=new URLSearchParams(location.search);
+
+  //query string is a data bearer
+  const session_id = searchParams.get("session_id")
+  const dispatch= useDispatch();
+
+  useEffect(()=>{
+    dispatch(createOrder(session_id))
+  },[dispatch,session_id])
+
+
   return (
     <>
       <div className="row justify-content-center">
         <div className="col-6 mt-5 text-center">
+          
           <svg
             class="checkmark"
             xmlns="http://www.w3.org/2000/svg"
@@ -26,7 +49,7 @@ const OrderSuccess = () => {
 
           <h2>Your Order has been placed successfully.</h2>
 
-          <a>Go to Orders</a>
+          <Link to="/eats/orders/me/myOrders">Go to Orders</Link>
         </div>
       </div>
     </>
