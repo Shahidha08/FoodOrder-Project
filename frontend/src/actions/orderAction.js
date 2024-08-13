@@ -25,7 +25,7 @@ export const createOrder= (session_id) =>async(dispatch)=>{
 
         dispatch({
             type:CREATE_ORDER_SUCCESS,
-            payload:data
+            payload:data,
         })
     }catch(error){
         dispatch({
@@ -64,9 +64,6 @@ export const myOrders=()=>async(dispatch)=>{
         })
         const {data}=await axios.get("/api/v1/eats/orders/me/myOrders")
 
-        const config={
-            headers:{"Content-Type": "application/json"},
-        }
         dispatch({
             type:MY_ORDER_SUCCESS,
             payload:data.orders,
