@@ -24,7 +24,6 @@ import { loadUser } from "./actions/userAction";
 export default function App() {
    //dispatched exactly once when the component is first rendered ,
    //and check if user is authenticated or not
-   console.log(store)
    useEffect(()=>{
     store.dispatch(loadUser())
    },[]);
